@@ -6,7 +6,7 @@ const development = {
   database: process.env.DB_DATABASE,
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
-  dialect: process.env.DB_DIALECT,
+  dialect: process.env.DB_DIALECT || "postgres",
 };
 
 const production = {
@@ -14,9 +14,10 @@ const production = {
   dialect: "postgres",
   dialectOptions: {
     ssl: {
-      rejectUnauthorized: false
-    }
-  }
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
 };
 
-module.exports = { development };
+module.exports = { development, production };
